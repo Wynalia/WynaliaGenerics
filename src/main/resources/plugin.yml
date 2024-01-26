@@ -1,0 +1,4 @@
+name: WynaliaCiteDesTemples
+version: '${project.version}'
+main: fr.wynalia.citedestemples.Main
+api-version: '1.20'
