@@ -1,0 +1,4 @@
+db:
+  url: jdbc:mysql://host:3306/database
+  user: username
+  password: password
