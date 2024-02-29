@@ -1,5 +1,6 @@
 package fr.wynalia.citedestemples;
 
+import fr.wynalia.citedestemples.teams.TeamManager;
 import fr.wynalia.database.classes.Database;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -27,6 +28,8 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         database.connect();
+
+        new TeamManager(this);
     }
 
     @Override

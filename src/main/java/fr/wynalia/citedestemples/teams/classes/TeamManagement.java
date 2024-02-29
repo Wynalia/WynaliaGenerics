@@ -14,7 +14,17 @@ public class TeamManagement {
     private static TeamManagement instance;
     private final Map<Integer, Team> teams = new HashMap<>();
 
-    private TeamManagement() {
+    public static TeamManagement getInstance() {
+        if (instance == null) instance = new TeamManagement();
+        return instance;
+    }
+
+    public Map<Integer, Team> getTeams() {
+        return teams;
+    }
+
+    public void loadTeams() {
+        teams.clear();
         String sql = "SELECT * FROM cite_des_temples_teams t " +
                 "LEFT JOIN cite_des_temples_players p " +
                 "ON p.team_id = t.id";
@@ -39,12 +49,25 @@ public class TeamManagement {
         }
     }
 
-    public static TeamManagement getInstance() {
-        if (instance == null) instance = new TeamManagement();
-        return instance;
+    public void update(int id) {
+        Team team = getTeam(id);
+        String sql = "UPDATE cite_des_temples_teams t" +
+                "SET t.money = ? " +
+                "WHERE t.id = ?";
+
+        try (PreparedStatement statement = Main.getInstance().getConnection().prepareStatement(sql)) {
+            statement.setInt(1, team.getMoney());
+            statement.setInt(2, team.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public Map<Integer, Team> getTeams() {
-        return teams;
+    public Team getTeam(int id) {
+        return teams.values().stream()
+                .filter(team -> team.getId() == id)
+                .findAny()
+                .orElse(null);
     }
 }
