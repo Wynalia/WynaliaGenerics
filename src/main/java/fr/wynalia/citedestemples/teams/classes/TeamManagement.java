@@ -29,7 +29,7 @@ public class TeamManagement {
                 "LEFT JOIN cite_des_temples_players p " +
                 "ON p.team_id = t.id";
 
-        try (PreparedStatement statement = Main.getInstance().getConnection().prepareStatement(sql)) {
+        try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -49,19 +49,23 @@ public class TeamManagement {
         }
     }
 
-    public void update(int id) {
+    public void updateTeam(int id) {
         Team team = getTeam(id);
         String sql = "UPDATE cite_des_temples_teams t" +
                 "SET t.money = ? " +
                 "WHERE t.id = ?";
 
-        try (PreparedStatement statement = Main.getInstance().getConnection().prepareStatement(sql)) {
+        try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
             statement.setInt(1, team.getMoney());
             statement.setInt(2, team.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void updateTeams() {
+        teams.values().forEach(team -> updateTeam(team.getId()));
     }
 
     public Team getTeam(int id) {

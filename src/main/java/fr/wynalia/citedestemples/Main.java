@@ -10,18 +10,15 @@ import java.io.File;
 import java.sql.Connection;
 
 public final class Main extends JavaPlugin {
-    private static Main instance;
-    private FileConfiguration configuration;
-    private Database database;
+    private static Database database;
 
     public Main() {
         saveDefaultConfig();
-        instance = this;
     }
 
     @Override
     public void onLoad() {
-        configuration = YamlConfiguration.loadConfiguration(new File(getDataFolder(), "config.yml"));
+        FileConfiguration configuration = YamlConfiguration.loadConfiguration(new File(getDataFolder(), "config.yml"));
         database = Database.getInstance(configuration.getString("db.url"), configuration.getString("db.user"), configuration.getString("db.password"));
     }
 
@@ -37,15 +34,7 @@ public final class Main extends JavaPlugin {
         database.disconnect();
     }
 
-    public static Main getInstance() {
-        return instance;
-    }
-
-    public FileConfiguration getConfiguration() {
-        return configuration;
-    }
-
-    public Connection getConnection() {
+    public static Connection getConnection() {
         return database.getConnection();
     }
 }
