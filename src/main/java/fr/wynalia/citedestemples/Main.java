@@ -18,8 +18,8 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onLoad() {
-        FileConfiguration configuration = YamlConfiguration.loadConfiguration(new File(getDataFolder(), "config.yml"));
-        database = Database.getInstance(configuration.getString("db.url"), configuration.getString("db.user"), configuration.getString("db.password"));
+        FileConfiguration config = YamlConfiguration.loadConfiguration(new File(getDataFolder(), "config.yml"));
+        database = Database.getInstance(config.getString("db.url"), config.getString("db.user"), config.getString("db.password"));
     }
 
     @Override

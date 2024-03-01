@@ -51,7 +51,7 @@ public class TeamManagement {
 
     public void updateTeam(int id) {
         Team team = getTeam(id);
-        String sql = "UPDATE cite_des_temples_teams t" +
+        String sql = "UPDATE cite_des_temples_teams t " +
                 "SET t.money = ? " +
                 "WHERE t.id = ?";
 

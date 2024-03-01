@@ -2,3 +2,8 @@ db:
   url: jdbc:mysql://host:3306/database
   user: username
   password: password
+
+chat:
+  player-join: "[§e+§r] §e{%username%}"
+  player-quit: "[§c-§r] §c{%username%}"
+  player-talk: "[{%team%}] {%username%} > {%message%}"
