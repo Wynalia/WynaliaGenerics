@@ -7,3 +7,4 @@ chat:
   player-join: "[§e+§r] §e{%username%}"
   player-quit: "[§c-§r] §c{%username%}"
   player-talk: "[{%team%}] {%username%} > {%message%}"
+  player-op-talk: "[Organisateur] {%username%} > {%message%}"

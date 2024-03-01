@@ -74,4 +74,11 @@ public class TeamManagement {
                 .findAny()
                 .orElse(null);
     }
+
+    public Team getTeamByMember(UUID uuid) {
+        return teams.values().stream()
+                .filter(team -> team.getMembers().contains(uuid))
+                .findAny()
+                .orElse(null);
+    }
 }
