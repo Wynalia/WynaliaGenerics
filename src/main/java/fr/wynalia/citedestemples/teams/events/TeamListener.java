@@ -12,16 +12,10 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 public class TeamListener implements Listener {
-    private final Main main;
-
-    public TeamListener(Main main) {
-        this.main = main;
-    }
-
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        Template template = TemplateReader.read(main.getDataFolder(), "config:chat.player-join");
+        Template template = TemplateReader.read(Main.getInstance().getDataFolder(), "config:chat.player-join");
         template.set("username", player.getName());
         event.setJoinMessage(template.render());
     }
@@ -29,7 +23,7 @@ public class TeamListener implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        Template template = TemplateReader.read(main.getDataFolder(), "config:chat.player-quit");
+        Template template = TemplateReader.read(Main.getInstance().getDataFolder(), "config:chat.player-quit");
         template.set("username", player.getName());
         event.setQuitMessage(template.render());
     }
@@ -37,8 +31,14 @@ public class TeamListener implements Listener {
     @EventHandler
     public void onTalk(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
-        Template template = (player.isOp() ? TemplateReader.read(main.getDataFolder(), "config:chat.player-op-talk") : TemplateReader.read(main.getDataFolder(), "config:chat.player-talk"));
-        template.set("team", TeamManagement.getInstance().getTeamByMember(player.getUniqueId()).getName());
+        Template template = TemplateReader.read(Main.getInstance().getDataFolder(), "config:chat.player-talk");
+
+        if (player.isOp()) {
+            template = TemplateReader.read(Main.getInstance().getDataFolder(), "config:chat.player-op-talk");
+        } else {
+            template.set("team", TeamManagement.getInstance().getTeamByMember(player.getUniqueId()).getName());
+        }
+
         template.set("username", player.getName());
         template.set("message", event.getMessage());
         event.setFormat(template.render());

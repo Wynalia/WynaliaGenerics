@@ -10,9 +10,11 @@ import java.io.File;
 import java.sql.Connection;
 
 public final class Main extends JavaPlugin {
+    private static Main instance;
     private static Database database;
 
     public Main() {
+        instance = this;
         saveDefaultConfig();
     }
 
@@ -26,12 +28,16 @@ public final class Main extends JavaPlugin {
     public void onEnable() {
         database.connect();
 
-        new TeamManager(this);
+        new TeamManager();
     }
 
     @Override
     public void onDisable() {
         database.disconnect();
+    }
+
+    public static Main getInstance() {
+        return instance;
     }
 
     public static Connection getConnection() {

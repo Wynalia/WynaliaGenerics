@@ -7,12 +7,10 @@ import fr.wynalia.citedestemples.teams.events.TeamListener;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class TeamManager {
-    public TeamManager(Main main) {
-        main.getCommand("team").setExecutor(new TeamCommand());
+    public TeamManager() {
+        Main.getInstance().getCommand("team").setExecutor(new TeamCommand());
 
-        main.getServer().getPluginManager().registerEvents(new TeamListener(main), main);
-
-        TeamManagement.getInstance().loadTeams();
+        Main.getInstance().getServer().getPluginManager().registerEvents(new TeamListener(), Main.getInstance());
 
         new BukkitRunnable() {
             @Override
@@ -20,6 +18,6 @@ public class TeamManager {
                 TeamManagement.getInstance().updateTeams();
                 TeamManagement.getInstance().loadTeams();
             }
-        }.runTaskTimer(main, 0L, 18000L);
+        }.runTaskTimer(Main.getInstance(), 0L, 18000L);
     }
 }
