@@ -3,7 +3,3 @@ version: '${project.version}'
 main: fr.wynalia.citedestemples.Main
 author: DofSekai
 api-version: '1.20'
-depend: [WynaliaDatabase, WynaliaTemplate]
-commands:
-  team:
-    description: team command
