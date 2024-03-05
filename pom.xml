@@ -7,9 +7,10 @@
     <groupId>fr.dofsekai</groupId>
     <artifactId>WynaliaGenerics</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
 
     <name>WynaliaGenerics</name>
+    <description>Managing generic tools for Wynalia</description>
+    <url>https://gitlab.com/wynalia/generics</url>
 
     <properties>
         <java.version>1.8</java.version>
