@@ -1,4 +1,4 @@
-package fr.dofsekai.generics.teams;
+package fr.wynalia.generics.teams;
 
 import java.util.List;
 import java.util.UUID;

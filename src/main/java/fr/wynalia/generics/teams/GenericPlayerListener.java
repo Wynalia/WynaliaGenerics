@@ -1,4 +1,4 @@
-package fr.dofsekai.generics.teams;
+package fr.wynalia.generics.teams;
 
 import fr.wynalia.templates.classes.Template;
 import fr.wynalia.templates.classes.TemplateReader;

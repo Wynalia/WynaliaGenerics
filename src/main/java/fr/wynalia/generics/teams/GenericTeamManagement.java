@@ -1,4 +1,4 @@
-package fr.dofsekai.generics.teams;
+package fr.wynalia.generics.teams;
 
 import fr.wynalia.database.classes.Database;
 import org.bukkit.plugin.Plugin;
