@@ -1,6 +1,5 @@
 package fr.wynalia.generics.teams;
 
-import fr.wynalia.database.classes.Database;
 import org.bukkit.plugin.Plugin;
 
 import java.sql.PreparedStatement;
@@ -12,7 +11,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class GenericTeamManagement {
-    private final Plugin plugin;
+    /*private final Plugin plugin;
     private static GenericTeamManagement instance;
     private final Database database;
     private final Map<Integer, GenericTeam> teams = new HashMap<>();
@@ -66,5 +65,5 @@ public class GenericTeamManagement {
                 .filter(team -> team.getMembers().contains(uuid))
                 .findAny()
                 .orElse(null);
-    }
+    }*/
 }

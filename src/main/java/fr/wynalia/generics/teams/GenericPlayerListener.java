@@ -1,7 +1,7 @@
 package fr.wynalia.generics.teams;
 
-import fr.wynalia.templates.classes.Template;
-import fr.wynalia.templates.classes.TemplateReader;
+import fr.wynalia.generics.templates.Template;
+import fr.wynalia.generics.templates.TemplateReader;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,7 +18,7 @@ public class GenericPlayerListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        Template template = TemplateReader.read(plugin.getDataFolder(), "config:chat.player-join");
+        Template template = TemplateReader.read(plugin, "config:chat.player-join");
         template.set("username", player.getName());
         event.setJoinMessage(template.render());
     }
